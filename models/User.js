@@ -1,4 +1,4 @@
-const { hash } = require('../utils/hash');
+const { hash } = require('../utils/cryptoUtils');
 
 class User {
   constructor(

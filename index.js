@@ -14,6 +14,7 @@ const config = require('./config');
 const DataService = require('./lib/DataService');
 const CustomersService = require('./lib/CustomersService');
 const UserService = require('./lib/UserService');
+const AuthService = require('./lib/AuthService');
 const { parseJSONToObject } = require('./utils/dataUtils');
 
 class PingHandler {
@@ -30,6 +31,7 @@ class NotFoundHandler {
 const dataService = new DataService();
 const customersService = new CustomersService(dataService);
 const userService = new UserService(dataService);
+const authService = new AuthService(dataService);
 const pingHandler = new PingHandler();
 const notFoundHandler = new NotFoundHandler();
 
@@ -37,6 +39,7 @@ const db = config.db;
 const router = {
   customers: customersService,
   users: userService,
+  auth: authService,
   ping: pingHandler,
 };
 
