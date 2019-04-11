@@ -15,7 +15,7 @@ exports.sign = function (str, key) {
 }
 
 exports.verify = function (raw, secret, signature) {
-  return signature === this._sign(raw, secret);
+  return signature === exports.sign(raw, secret);
 }
 
 exports.base64Encode = function (str) {
