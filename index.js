@@ -2,6 +2,9 @@
  * 
  * URLS:
  * customers => /customers
+ * users => /users
+ * auth => auth/register
+ *      => auth/login
  */
 
 const http = require('http');

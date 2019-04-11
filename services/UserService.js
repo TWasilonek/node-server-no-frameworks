@@ -7,7 +7,7 @@ const ACCEPTABLE_METHODS = [
   'get',
   'put',
   'delete',
-]
+];
 
 class UserService extends CrudService {
   constructor(dataService) {
