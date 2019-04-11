@@ -3,13 +3,12 @@ const { ACCEPTABLE_METHODS } = require('../constants/http');
 const JwtService = require('./JwtService');
 
 class CrudService {
-  // TODO: add authentication mechanism
-  constructor(
+  constructor({
     dataService,
     acceptableMethods = ACCEPTABLE_METHODS,
     entity = '',
     requiresAuth = false,
-  ) {
+  }) {
     this.dataService = dataService;
     this.acceptableMethods = acceptableMethods;
     this.entity = entity;

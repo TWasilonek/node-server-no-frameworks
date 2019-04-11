@@ -2,7 +2,6 @@ const CrudService = require('./CrudService');
 const { validateUserData } = require('../utils/validators');
 const User = require('../models/User');
 const { USERS } = require('../constants/data');
-// const JwtService = require('./JwtService');
 
 const ACCEPTABLE_METHODS = [
   'get',
@@ -12,8 +11,12 @@ const ACCEPTABLE_METHODS = [
 
 class UserService extends CrudService {
   constructor(dataService) {
-    super(dataService, ACCEPTABLE_METHODS, USERS, true);
-    // this.jwt = new JwtService();
+    super({
+      dataService,
+      acceptableMethods: ACCEPTABLE_METHODS,
+      entity: USERS,
+      requiresAuth: true,
+    });
   }
 
   handleGetCollection (reqData, callback) {

@@ -11,10 +11,10 @@ const path = require('path');
 const fs = require('fs');
 const { StringDecoder } = require('string_decoder');
 const config = require('./config');
-const DataService = require('./lib/DataService');
-const CustomersService = require('./lib/CustomersService');
-const UserService = require('./lib/UserService');
-const AuthService = require('./lib/AuthService');
+const DataService = require('./services/DataService');
+const CustomersService = require('./services/CustomersService');
+const UserService = require('./services/UserService');
+const AuthService = require('./services/AuthService');
 const { parseJSONToObject } = require('./utils/dataUtils');
 
 class PingHandler {

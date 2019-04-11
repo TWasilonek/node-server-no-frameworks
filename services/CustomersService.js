@@ -3,7 +3,12 @@ const { CUSTOMERS } = require('../constants/data');
 
 class CustomersService extends CrudService {
   constructor(dataService, acceptableMethods) {
-    super(dataService, acceptableMethods, CUSTOMERS);
+    super({
+      dataService,
+      acceptableMethods,
+      entity: CUSTOMERS,
+      requiresAuth: false,
+    });
   }
 }
 
