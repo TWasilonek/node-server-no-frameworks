@@ -1,11 +1,6 @@
-/** 
- * Library for storing and editing data
- * 
- * */ 
-
 const fs = require('fs');
 const path = require('path');
-const { parseJSONToObject } = require('../utils/dataUtils')
+const { parseJSONToObject, readFileAsync, readdirAsync } = require('../utils/dataUtils');
 
 class DataService {
   constructor() {
@@ -65,30 +60,30 @@ class DataService {
 
   readCollection (dir, callback) {
     const dirPath = path.join(this.baseDir, dir);
-    const collection = {};
 
-    fs.readdir(dirPath, (err, files) => {
-      if (!err) {
-        files.forEach(file => {
-          const temp = file.split('.');
-          temp.splice(-1, 1);
-          const fileName = temp.join('.');
-          const filePath = this._makePath(dir, fileName);
+    readdirAsync(dirPath).then(filenames => {
+      return Promise.all(filenames.map(file => this._getFile(dir, file)));
+    }).then(files => {
+      const collection = {};
 
-          // TODO: reading files synchronously is never a good idea in a live webserver. How to fix this to use the async version?
-          // fs.readFile(filePath, 'utf8', (err, data) => {
-          //   console.log(fileName, data);
-          //   allCustomers[fileName] = data;
-          // });
+      files.forEach(({ filename, data }) => {
+        collection[filename] = parseJSONToObject(data);
+      });
 
-          collection[fileName] = parseJSONToObject(fs.readFileSync(filePath, 'utf8'));
-        });
-
-        callback(err, collection);
-      } else {
-        callback('Error reading the directory');
-      }
+      callback(null, collection);
+    }).catch((error) => {
+      console.log('error ', error);
+      callback('Error reading the directory');
     });
+  }
+
+  _getFile(dir, file) {
+    const temp = file.split('.');
+    temp.splice(-1, 1);
+    const fileName = temp.join('.');
+    const filePath = this._makePath(dir, fileName);
+  
+    return readFileAsync(filePath, 'utf8');
   }
 
   _writeFile (fileDescriptor, stringData, callback) {

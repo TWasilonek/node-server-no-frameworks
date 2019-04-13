@@ -54,14 +54,16 @@ class Auth {
     if (password && username) {
       this.dataService.read(this.entity, username, (err, data) => {
         if (!err && data) {
-          const { password: hashedPassword } = data;
-          if (hash(password) === hashedPassword) {
+          const { password: storedPassword } = data;
+          // check if the password matches
+          if (hash(password) === storedPassword) {
             delete data.password;
+            // create jwt token for the user
             const token = this.jwt.createToken(data);
 
             callback(200, { data, token });
           } else {
-            callback(401, {'Error': 'Not Authorized'});
+            callback(401, { 'Error': 'Not Authorized' });
           }
         } else {
           callback(500, { 'Error': 'Error while reading user' });
