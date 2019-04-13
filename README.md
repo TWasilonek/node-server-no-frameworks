@@ -28,21 +28,71 @@ cd node-server-no-frameworks
 npm start
 ```
 
-3. There are three kind of routes that you can use:
+
+## Routes
+
+**Customers**
+```
+POST /customers => create customer
+Don't require any specific model, 
+you can send a simple JSON payload of random key/value pairs.
+```
+```
+GET /customers
+```
+```
+GET /customer/:id
+```
+```
+PUT /customers/:id => update customer
+Payload same as in POST
+```
+```
+DELETE /customers/:id
+```
+
+**Aath**
+```
+POST /register
+
+Payload:
+{string} email 
+{string} username
+{string} firstName
+{string} password
+
+Returns JWT token
+```
 
 ```
-/customers (GET / POST / PUT / DELETE)
+POST /login
+
+Payload:
+{string} username 
+{string} password
 ```
 
-```
-/users (GET / PUT / DELETE) - requires authorization header
-```
+**Users**
+All routes are protected, so you need to include an `Authorization` header with the JWT token
 
 ```
-/login (POST)
+GET /users
+```
+```
+GET /users/:username
+```
+```
+PUT /users/:username
+
+Payload (no fields are required):
+{string} email 
+{string} username
+{string} firstName
+{string} password
+```
+```
+DELETE /users/:username
 ```
 
-```
-/register (POST)
-```
+
 
