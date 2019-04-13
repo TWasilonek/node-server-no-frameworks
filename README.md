@@ -12,6 +12,9 @@ This is a simple http server using CRUD services written in pure Node.js without
 ✅ Login and Register routes
 
 
+## Requirements 
+Latest Node.js version.
+
 
 ## Getting Started   
 1. Clone project   
