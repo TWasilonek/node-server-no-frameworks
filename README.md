@@ -32,6 +32,17 @@ cd node-server-no-frameworks
 npm start
 ```
 
+3. Adding HTTPS support
+
+If you want to use http, you can uncomment the https server code in `index.js`.
+To make it work:
+```
+1. $ mkdir https
+2. $ cd https
+3. $ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
+```
+The above commands will result in having the necessary `key.pem` and `cert.pem` files needed to start the https server.
+
 
 ## Routes
 

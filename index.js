@@ -45,16 +45,16 @@ httpServer.listen(config.httpPort, () => {
 });
 
 // ======= HTTPS server =======
-const httpsServerOptions = {
-  key: fs.readFileSync(path.join(__dirname, 'https', 'key.pem')),
-  cert: fs.readFileSync(path.join(__dirname, 'https', 'cert.pem')),
-};
+// const httpsServerOptions = {
+//   key: fs.readFileSync(path.join(__dirname, 'https', 'key.pem')),
+//   cert: fs.readFileSync(path.join(__dirname, 'https', 'cert.pem')),
+// };
 
-const httpsServer = https.createServer(httpsServerOptions, unifiedServer);
+// const httpsServer = https.createServer(httpsServerOptions, unifiedServer);
 
-httpsServer.listen(config.httpsPort, () => {
-  console.log(`Server is listening on ${config.httpsPort} in ${config.env} environment`);
-});
+// httpsServer.listen(config.httpsPort, () => {
+//   console.log(`Server is listening on ${config.httpsPort} in ${config.env} environment`);
+// });
 
 // ======= Unified Server ======= 
 function unifiedServer (req, res) {
