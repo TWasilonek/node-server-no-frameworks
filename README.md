@@ -34,7 +34,7 @@ npm start
 
 3. Adding HTTPS support
 
-If you want to use http, you can uncomment the https server code in `index.js`.
+If you want to use https, you can uncomment the https server code in `index.js`.
 To make it work:
 ```
 1. $ mkdir https
