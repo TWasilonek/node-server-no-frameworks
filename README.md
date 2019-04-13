@@ -4,9 +4,13 @@ This is a simple http server using CRUD services written in pure Node.js without
 
 ## Features   
 ✅ Node.js
+
 ✅ CRUD actions
+
 ✅ Simple JWT authentication
+
 ✅ Login and Register routes
+
 
 
 ## Getting Started   
@@ -34,7 +38,7 @@ npm start
 **Customers**
 ```
 POST /customers => create customer
-Don't require any specific model, 
+Doesn't require any specific model, 
 you can send a simple JSON payload of random key/value pairs.
 ```
 ```
@@ -73,6 +77,7 @@ Payload:
 ```
 
 **Users**
+
 All routes are protected, so you need to include an `Authorization` header with the JWT token
 
 ```
